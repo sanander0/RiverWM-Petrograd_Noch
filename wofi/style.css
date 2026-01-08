@@ -1,0 +1,23 @@
+window {
+  background-color: #14130d; /* светлее базового */
+  border: 2px solid #f45f0c;
+  border-radius: 0.75rem;
+}
+
+* {
+  font-family: "JetBrains Mono";
+  font-size: 1rem;
+  color: #e0d6b8; /* светлее foreground */
+}
+
+#scroll {
+  padding: 0.75rem;
+}
+
+#input {
+  background-color: #1f231f;
+  color: #f45f0c;
+  border: 2px solid #f45f0c;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  outline: none;

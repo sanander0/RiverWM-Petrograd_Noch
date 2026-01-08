@@ -1,0 +1,84 @@
+* {
+    font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    transition: background-color .3s ease-out;
+}
+
+window#waybar {
+    background: rgba(26, 27, 38, 0);
+    color: #b43003;
+    font-family: 
+        SpaceMono Nerd Font,
+        feather;
+    transition: background-color .5s;
+}
+
+.modules-left,
+.modules-right
+{
+    background: rgba(15, 14, 8, 1);
+    margin: 5px 10px;
+    padding: 0 5px;
+    border-radius: 0px;
+}
+.modules-left {
+    padding: 0;
+}
+.modules-center {
+    padding: 0 10px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mpd {
+    padding: 0 10px;
+    border-radius: 0px;
+}
+
+#tags button {
+  background: transparent;
+  font-family: SpaceMono Nerd Font, feather;
+  font-weight: 900;
+  font-size: 13pt;
+  color: #b43003;
+  border: none;
+  border-radius: 0px;
+  padding: 0 10px;
+}
+
+#tags button.occupied {
+  color: #b43003;
+}
+
+#tags button.urgent {
+  color: #b43003;
+}
+
+#tags button:hover {
+  background: #b43003;
+  color: #b43003;
+  box-shadow: none;
+}
+
+#tags button.focused {
+  box-shadow: inset 0 -4px #b43003;
+}
+
+#custom-void {
+    margin-left: 5px;
+    padding: 0 10px;
+    font-size: 20px;
+    transition: color .5s;
+}
+#custom-void:hover {
+    color: #b43003;
+}
