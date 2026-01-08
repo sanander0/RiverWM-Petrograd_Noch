@@ -1,4 +1,4 @@
-# RiverWM-Petrograd_Noch
+# RiverWM Петроград Ночь
 
 ## СКИНШОТЫ:
 [<img src="https://github.com/sanander0/RiverWM-Petrograd_Noch/blob/main/Screenshots/Screen.png?raw=true" width="350" align="center">](https://github.com/sanander0/RiverWM-Petrograd_Noch/blob/main/Screenshots/Screen.png?raw=true)
