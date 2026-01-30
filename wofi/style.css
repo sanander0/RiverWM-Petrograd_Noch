@@ -1,7 +1,7 @@
 window {
   background-color: #14130d; /* светлее базового */
   border: 2px solid #f45f0c;
-  border-radius: 0.75rem;
+  border-radius: 0rem;
 }
 
 * {

@@ -131,7 +131,7 @@ riverctl map -layout 0 normal Super C close
 riverctl map -layout 0 normal Super M  exit
 
 #Бинд wofi
-riverctl map -layout 0 normal Super W spawn "wofi --show drun -I"
+riverctl map -layout 0 normal Super W spawn "pgrep -x wofi && pkill wofi || wofi --show drun -I"
 
 #Бинд скриншот
 riverctl map -layout 0 normal  None Print spawn 'grim -g "$(slurp)" - | tee ~/Screenshots/$(date +"%Y-%m-%d-%H%M%S").png | wl-copy && notify-send "Скриншот сохранён и в буфере"'
@@ -177,7 +177,3 @@ riverctl rule-add -app-id "org.gnome.FileRoller" -title "Extract" float
 riverctl rule-add -app-id "imv" float
 riverctl rule-add -app-id "imv" position center
 riverctl rule-add -app-id "imv" dimensions 1000 800
-
-#cava & cmus
-riverctl rule-add -app-id "cmus" tags $((1 << 4))  # 5-й тег (16)
-riverctl rule-add -app-id "cava" tags $((1 << 4))  # 5-й тег (16)
