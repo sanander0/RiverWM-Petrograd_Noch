@@ -1,84 +1,497 @@
+/* vim:fileencoding=utf-8:foldmethod=marker:ft=css
+*/
+
+/* Define colors */
+/* {{{ */
+@define-color background1    #1d211e;
+@define-color background2    #0f0e08;
+@define-color separator      #1d211e;
+@define-color warning        #f45f0c;
+@define-color caution        #314277;
+@define-color performance    #ecac4a;
+@define-color audio          #8803b5;
+@define-color misc           #50bebe;
+@define-color date           #b9ca4a;
+@define-color work           #5073bf;
+@define-color window         #5073bf;
+@define-color resize         #c29059;
+@define-color process        #f45f0c;
+@define-color text           #c8bda2;
+/* }}} */
+
+/* Reset all styles */
+/* {{{ */
 * {
-    font-family: "Fira Sans Semibold", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    transition: background-color .3s ease-out;
-}
-
-window#waybar {
-    background: rgba(26, 27, 38, 0);
-    color: #b43003;
-    font-family: 
-        SpaceMono Nerd Font,
-        feather;
-    transition: background-color .5s;
-}
-
-.modules-left,
-.modules-right
-{
-    background: rgba(15, 14, 8, 1);
-    margin: 5px 10px;
-    padding: 0 5px;
-    border-radius: 0px;
-}
-.modules-left {
-    padding: 0;
-}
-.modules-center {
-    padding: 0 10px;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#disk,
-#temperature,
-#network,
-#pulseaudio,
-#wireplumber,
-#custom-media,
-#tray,
-#mpd {
-    padding: 0 10px;
-    border-radius: 0px;
-}
-
-#tags button {
-  background: transparent;
-  font-family: SpaceMono Nerd Font, feather;
-  font-weight: 900;
-  font-size: 13pt;
-  color: #b43003;
   border: none;
-  border-radius: 0px;
-  padding: 0 10px;
-}
-
-#tags button.occupied {
-  color: #b43003;
-}
-
-#tags button.urgent {
-  color: #b43003;
-}
-
-#tags button:hover {
-  background: #b43003;
-  color: #b43003;
+  border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
   box-shadow: none;
+  text-shadow: none;
 }
 
-#tags button.focused {
-  box-shadow: inset 0 -4px #b43003;
+/* }}} */
+
+/* Main bar keyframes */
+/* {{{ */
+
+/* Keyframes for main bar criticals */
+
+@keyframes blink-urgent-workspace {
+  to {
+    color: @warning;
+    /* background-image: linear-gradient( */
+    /*   -63.435deg, */
+    /*   transparent 25%, */
+    /*   @warning 25%, */
+    /*   @warning 75%, */
+    /*   transparent 75% */
+    /* ); */
+  }
 }
 
-#custom-void {
-    margin-left: 5px;
-    padding: 0 10px;
-    font-size: 20px;
-    transition: color .5s;
+@keyframes blink-critical-text {
+  to {
+    color: @sepepator;
+  }
 }
-#custom-void:hover {
-    color: #b43003;
+
+/* Keyframes for main bar modifiers */
+@keyframes blink-modifier-text {
+  to {
+    color: @sepepator;
+  }
+}
+
+@keyframes blink-special-workspace {
+  to {
+    color: @window;
+  }
+}
+
+/* }}} */
+
+/* Main bar defaults */
+/* {{{ */
+#waybar.main {
+  background: @background2;
+  font-family: "JetBrainsMono Nerd Font propo";
+  /* font-family: "gohufont11 nerd font propo"; */
+  font-size: 12pt;
+  font-weight: 600;
+  color: @text;
+  border-radius: 0pt;
+  /* box-shadow: */
+  /*   inset 0px 5px 4px -5px rgba(170, 190, 255, 0.5), */
+  /*   inset 0px -5px 4px -5px rgba(170, 190, 255, 1); */
+}
+
+#waybar.main button {
+  font-family: "JetBrains Mono Nerd Font propo";
+  font-size: 12pt;
+  font-weight: 600;
+  color: @text;
+}
+
+/* }}} */
+
+/* Main bar modules */
+/* {{{ */
+#waybar.main #network,
+#waybar.main #battery,
+#waybar.main #clock,
+#waybar.main #cpu,
+#waybar.main #memory.ram,
+#waybar.main #pulseaudio,
+#waybar.main #temperature,
+#waybar.main #traym,
+#waybar.main #window {
+  padding-left: 8pt;
+  padding-right: 8pt;
+}
+
+/* }}} */
+
+/* Module colors */
+/* {{{ */
+#waybar.main #cpu,
+#waybar.main #temperature,
+#waybar.main #memory.ram,
+#waybar.main #network {
+  color: @performance;
+  background: @background1;
+}
+
+#waybar.main #pulseaudio {
+  color: @audio;
+  background: @background2;
+}
+
+#waybar.main #battery {
+  color: @misc;
+  background: @background1;
+}
+
+#waybar.main #clock,
+#custom-timer {
+  color: @date;
+  background: @background2;
+}
+
+#waybar.main #clock {
+  border-radius: 0pt 6pt 6pt 0pt;
+}
+
+#waybar.main #network.info {
+  padding-right: 10px;
+  padding-left: 10px;
+  color: @caution;
+}
+
+#waybar.main #network.info.wifi.normal,
+#waybar.main #network.info.ethernet {
+  color: @performance;
+  padding-right: 15px;
+}
+
+#waybar.main #network.info.wifi {
+  color: @warning;
+  padding-right: 15px;
+}
+
+/* Main bar criticals */
+/* {{{ */
+#waybar.main #memory.swap.critical,
+#waybar.main #memory.ram.critical,
+#waybar.main #cpu.critical,
+#waybar.main #temperature.critical {
+  color: @warning;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-name: blink-critical-text;
+  animation-duration: 1s;
+  animation-timing-function: steps(15);
+}
+
+#waybar.main #tags button.urgent,
+#waybar.main #tags button.special.urgent {
+  transition: all 0s ease;
+  background-image: linear-gradient(
+    -63.435deg,
+    transparent 25%,
+    @background2 25%,
+    @background2 75%,
+    transparent 75%
+  );
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-name: blink-urgent-workspace;
+  animation-duration: 1s;
+  animation-timing-function: steps(15);
+}
+
+/* }}} */
+
+/* Main bar warnings */
+/* {{{ */
+#waybar.main #custom-headsetbattery.off,
+#waybar.main #pulseaudio.output.muted,
+#waybar.main #pulseaudio.input.source-muted {
+  color: @sepepator;
+}
+#waybar.main #custom-headsetbattery.low,
+#waybar.main #custom-battery.warning,
+#waybar.main #custom-battery.critical {
+  color: @warning;
+}
+
+/* }}} */
+
+/* Battery chargin */
+/* {{{ */
+#waybar.main #custom-battery.charging {
+  color: @misc;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-name: blink-modifier-text;
+  animation-duration: 1s;
+  animation-timing-function: steps(15);
+}
+
+/* }}} */
+
+/* Workspaces */
+/* {{{ */
+/* Default workspace settings */
+
+#waybar.main #tags {
+  padding-left: 20px;
+  padding-right: 4px;
+  margin-top: -6px;
+  margin-bottom: -6px;
+  background-image: linear-gradient(
+    -243.435deg,
+    @background2 17px,        /* #0f0e08 */
+    @separator 17px,          /* #1d211e */
+    @separator 21px,
+    transparent 21px,
+    transparent calc(100% - 22px),
+    @separator calc(100% - 22px),
+    @separator calc(100% - 18px),
+    transparent calc(100% - 18px)
+  );
+}
+
+#waybar.main #tags button {
+  color: #a89f8c;             /* приглушённый бежевый вместо #45475a — лучше читаемость на тёмном */
+  background: transparent;
+  border: 1.5px solid transparent;
+  padding: 6px 16px;          /* упростил, было дважды padding-left/right */
+  transition: all 0.25s ease;
+  font-style: italic;
+  margin-left: -17px;
+  background-image: linear-gradient(
+    -63.435deg,
+    transparent 25%,
+    @background2 25%,         /* #0f0e08 — сливается с фоном */
+    @background2 75%,
+    transparent 75%
+  );
+}
+
+/* Обычный видимый / активный на мониторе (visible) */
+#waybar.main #tags button.visible {
+  color: #c8bda2;             /* светлый бежевый текст */
+  background-image: linear-gradient(
+    -63.435deg,
+    transparent 25%,
+    #314277 25%,                /* @caution — тёмно-синий акцент */
+    #314277 75%,
+    transparent 75%
+  );
+}
+
+/* Фокус (focused) — основной активный тег */
+#waybar.main #tags button.focused {
+  color: @window;             /* #5073bf — синий */
+  background-image: linear-gradient(
+    -63.435deg,
+    transparent 24%,
+    @separator 24%,           /* #1d211e */
+    @separator 28%,
+    @background1 28%,         /* #1d211e */
+    @background1 73%,
+    @separator 73%,
+    @separator 76%,
+    transparent 76%
+  );
+}
+
+/* Hover на обычном теге */
+#waybar.main #tags button:hover {
+  color: @window;             /* #5073bf — синий при наведении */
+}
+
+/* Hover на уже focused теге */
+#waybar.main #tags button.focused:hover {
+  color: @background2;        /* #0f0e08 — почти чёрный текст */
+  background-image: linear-gradient(
+    -63.435deg,
+    transparent 24%,
+    @separator 24%,
+    @separator 28%,
+    @window 28%,              /* #5073bf — яркий синий фон при наведении */
+    @window 73%,
+    @separator 73%,
+    @separator 76%,
+    transparent 76%
+  );
+}
+
+/* Специальный workspace (special) в фокусе — анимация */
+#waybar.main #tags button.special.focused {
+  transition: all 0s ease;
+  border: 1.5px solid transparent;
+  color: @separator;          /* #1d211e — почти не видно, для контраста с анимацией */
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-name: blink-special-workspace;
+  animation-duration: 1s;
+  animation-timing-function: steps(15);
+}
+
+/* }}} */
+
+/* Custom icons as spacers */
+/* {{{ */
+#waybar.main #custom-spacer1,
+#waybar.main #custom-spacer2,
+#waybar.main #custom-spacer3,
+#waybar.main #custom-spacer4,
+#waybar.main #custom-spacer5,
+#waybar.main #custom-spacer6 {
+  font-size: 16pt;
+  font-weight: bold;
+  color: transparent;
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-bottom: -4px;
+  margin-top: -4px;
+}
+
+#waybar.main #custom-spacer1 {
+  background-image: linear-gradient(
+    63.435deg,
+    @transparent 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    @background1 52.5%
+  );
+}
+
+#waybar.main #custom-spacer2 {
+  background-image: linear-gradient(
+    63.435deg,
+    @background1 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    @background2 52.5%
+  );
+}
+
+#waybar.main #custom-spacer3 {
+  background-image: linear-gradient(
+    63.435deg,
+    @background2 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    @background1 52.5%
+  );
+}
+
+#waybar.main #custom-spacer4 {
+  background-image: linear-gradient(
+    63.435deg,
+    @background1 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    @background2 52.5%
+  );
+}
+
+#waybar.main #custom-spacer5 {
+  background-image: linear-gradient(
+    -63.435deg,
+    @transparent 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    transparent 52.5%
+  );
+}
+
+#waybar.main #custom-spacer6 {
+  background-image: linear-gradient(
+    -63.435deg,
+    @transparent 47.5%,
+    @sepepator 47.6%,
+    @sepepator 52.4%,
+    transparent 52.5%
+  );
+}
+
+/* }}} */
+
+/* Custom tray icon */
+/* {{{ */
+#waybar.main #custom-trayicon {
+  font-size: 11pt;
+  color: transparent;
+  /* font-weight: bold; */
+  font-style: italic;
+  background: transparent;
+  padding-right: 0pt;
+  padding-left: 2pt;
+  background-size: 16px;
+  background-position: 2px, 0px;
+  background-repeat: no-repeat;
+  background-image: url("/home/jan-aarela/.config/hypr/themes/Mocha-Power/pacman.png");
+}
+
+/* }}} */
+
+/* Tooltip */
+/* {{{ */
+tooltip {
+  background: @background;
+  border: 3px solid @caution;
+  border-radius: 8px;
+  font-weight: 500;
+  font-family: "JetBrains Mono Nerd Font";
+}
+
+#waybar.main #tray menu {
+  background: @background;
+  border: 3px solid @caution;
+  border-radius: 8px;
+}
+
+/* }}} */
+
+/* Indicator bar keyframes */
+/* {{{ */
+@keyframes blink-critical-battery {
+  to {
+    border-color: @warning;
+    box-shadow:
+      inset 0px 3px 4px -5px @warning,
+      inset 0px -3px 4px -5px @warning;
+  }
+}
+
+@keyframes blink-warning-battery {
+  to {
+    border-color: @warning;
+    box-shadow:
+      inset 0px 3px 4px -5px @warning,
+      inset 0px -3px 4px -5px @warning;
+  }
+}
+
+@keyframes blink-discharging-battery {
+  to {
+    border-color: @warning;
+    box-shadow:
+      inset 0px 3px 4px -5px @warning,
+      inset 0px -3px 4px -5px @warning;
+  }
+}
+
+@keyframes blink-charging-battery {
+  to {
+    border-color: @misc;
+    box-shadow:
+      inset 0px 3px 4px -5px @misc,
+      inset 0px -3px 4px -5px @misc;
+  }
+}
+
+@keyframes blink-full-battery {
+  to {
+    border-color: @misc;
+    box-shadow:
+      inset 0px 3px 4px -5px @misc,
+      inset 0px -3px 4px -5px @misc;
+  }
+}
+
+/* }}} */
+
+/* Кастомная иконка (Void / Logo) */
+#custom-logo {
+    margin-left: 8px;
+    padding: 0 12px;
+    font-size: 22px;
+    color: #a6adc8;
+    transition: color 0.4s ease;
 }
