@@ -92,9 +92,6 @@ call plug#begin("~/.vim/plugged")
 Plug 'scrooloose/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'neoclide/coc.nvim'
 call plug#end()
 
 " Автоматическое открытие NERDTree
@@ -112,11 +109,3 @@ let g:NERDTreeIgnore = ['^node_modules$', '^__pycache__$']
 " Закрыть vim, если единственная вкладка - это NERDTree
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_statusline_ontop=0
-let g:airline_theme='deus'
-let g:airline#extensions#tabline#formatter = 'default'
-
-" Автокомплиты через Tab
-inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#confirm() : "\<Tab>"

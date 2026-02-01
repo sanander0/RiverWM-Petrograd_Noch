@@ -17,7 +17,9 @@
 
 #----layout генератор----
 
-#Стандартный layout генератор
+#RiverTile
+
+rivertile -view-padding 2 -outer-padding 2 &
 riverctl default-layout rivertile
 
 #----Автозапуск----

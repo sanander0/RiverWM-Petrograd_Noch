@@ -6,9 +6,9 @@
     "name": "main",
     "reload_style_on_change": true,
 
-    "margin-top": 5,
-    "margin-left": 5,
-    "margin-right": 5,
+    "margin-top": 3,
+    "margin-left": 3,
+    "margin-right": 3,
 
     "modules-left": [
       "custom/logo",
@@ -46,10 +46,10 @@
         "critical": 20
         },
       "format": "<span foreground='#b5bd68'>{icon}</span> {capacity}%",
-      "format-charging": "<span foreground='#b5bd68'></span> {capacity}%",
-      "format-plugged": "<span foreground='#b5bd68'></span> {capacity}%",
+      "format-charging": "<span foreground='#b5bd68'> </span> {capacity}%",
+      "format-plugged": "<span foreground='#b5bd68'> </span> {capacity}%",
       "format-alt": "{time} <span foreground='#b5bd68'>{icon}</span>",
-      "format-icons": ["", "", "", "", ""]
+      "format-icons": [" ", " ", " ", " ", " "]
     },
 
     "group/traym": {
@@ -83,7 +83,7 @@
     "cpu": {
       "interval": 4,
       "min-length": 6,
-      "format": "<span foreground='#5073bf'></span> {usage}%",
+      "format": "<span foreground='#b5bd68'></span> {usage}%",
       "states": {
         "warning": 80,
         "critical": 95,
@@ -92,7 +92,7 @@
 
     "memory#ram": {
       "interval": 4,
-      "format": "<span foreground='#50bebe'>󰍛</span> {percentage}%",
+      "format": "<span foreground='#b5bd68'>󰍛</span> {percentage}%",
       "states": {
         "warning": 80,
         "critical": 95,
@@ -160,7 +160,7 @@
         "phone": "",
         "portable": "",
         "car": "",
-        "default": ["", ""],
+        "default": [" ", " "],
       },
       "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
       "on-click-right": "pwvucontrol & aplay ~/.config/sounds/interact.wav",
