@@ -49,6 +49,9 @@ xdg-desktop-portal-wlr &
 
 #----Техничка----
 
+#размер мастер окна
+riverctl send-layout-cmd rivertile "main-ratio -0.05"
+
 #Переключение раскладки клавиатуры
 riverctl keyboard-layout -options "grp:alt_shift_toggle" "us,ru"
 
@@ -145,7 +148,7 @@ riverctl map normal None F12 spawn "~/Scripts/colorpicker"
 riverctl map -layout 0 normal Super A spawn "~/Scripts/music.sh"
 
 #Спавн терминала
-riverctl map -layout 0 normal Super Q  spawn foot
+riverctl map -layout 0 normal Super Q  spawn alacritty
 
 #Спавн Explorer
 riverctl map -layout 0 normal Super E  spawn nemo
