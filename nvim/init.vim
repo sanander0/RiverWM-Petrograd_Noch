@@ -87,25 +87,3 @@ set so=30
 
 " Встроенный плагин для распознавания отступов
 filetype plugin indent on
-
-call plug#begin("~/.vim/plugged")
-Plug 'scrooloose/nerdtree'
-Plug 'preservim/nerdcommenter'
-Plug 'ryanoasis/vim-devicons'
-call plug#end()
-
-" Автоматическое открытие NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | wincmd p
-
-" Включить/выключить NERDTree при нажатии \n
-nnoremap <leader>n :NERDTreeToggle<CR>
-" Юникодные иконки папок (Работает только с плагином vim-devicons)
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-" Показывает количество строк в файлах
-let g:NERDTreeFileLines = 1
-" Игнорировать указанные папки
-let g:NERDTreeIgnore = ['^node_modules$', '^__pycache__$']
-" Закрыть vim, если единственная вкладка - это NERDTree
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-

@@ -1,11 +1,17 @@
 #!/usr/bin/env bash
+#----Переменные окружения----
+
+export XDG_CURRENT_DESKTOP=river
+export XDG_SESSION_TYPE=wayland
+
+dbus-update-activation-environment --all
 
 #----Софт----
 
 #sudo xbps-install -S swaybg jq ffmpeg cmus-ffmpeg cmus-pulseaudio gvfs gvfs-mtp wlr-randr xdg-desktop-portal xdg-desktop-portal-wlr brightnessctl  wl-clipboard xclip lswt ImageMagisk
 #sudo xbps-install -S cmus micro grim slurp yt-dlp
 #sudo xbps-install -S foot imv Waybar wofi firefox nemo file-roller mate-polkit mako  
-#sudo xbps-install -S pipewire pipewire-devel wireplumber libpulseaudio pulseaudio-utils alsa-pipewire pavucontrol
+#sudo xbps-install -s pipewire pipewire-devel wireplumber libpulseaudio pulseaudio-utils alsa-pipewire pavucontrol
 #sudo xbps-install -S noto-fonts-ttf ttf-ubuntu-font-family font-awesome fonts-roboto-ttf
 
 #----Группы----
@@ -30,10 +36,11 @@ rivertile &
 #Запуск waybar
 waybar &
 
-#уведомлялка
+#Уведомлялка
 mako &
 
-#Блокировка
+#Демон обоев
+swww-daemon &
 
 #PipeWire
 wireplumber &
@@ -42,10 +49,6 @@ pipewire &
 
 #polkit
 /usr/libexec/polkit-mate-authentication-agent-1 &
-
-#desktop portal
-xdg-desktop-portal &
-xdg-desktop-portal-wlr &
 
 #----Техничка----
 
@@ -64,11 +67,11 @@ riverctl input pointer-1267-13075-ASCE1205:00_04F3:3313_Touchpad tap enabled
 riverctl input pointer-1267-13075-ASCE1205:00_04F3:3313_Touchpad drag enabled
 #----Красивости----
 
-#Увелечение масштаба интерфеса
-wlr-randr --output eDP-1 --scale 1.2
+#обои
+swww img ~/Pictures/Wallpaper/cat_and_kvas.jpg
 
-#Обои
-swaybg -o eDP-1 -i /home/sanander/Wallpaper/Petrograd.jpg -m fill &
+#Увелечение масштаба интерфеса
+wlr-randr --output eDP-1 --scale 1.1
 
 # Цвет рамки активного окна
 riverctl border-color-focused 0xb43003
@@ -99,7 +102,7 @@ riverctl map -layout 0 normal Super J swap next
 riverctl map -layout 0 normal Super K swap previous
 
 #Бинд floating-tiling
-riverctl map normal Super+Shift F toggle-float
+riverctl map -layout 0 normal Super+Shift F toggle-float
 
 #Бинд перетакивание плавающих окон
 riverctl map-pointer normal Super BTN_LEFT move-view
@@ -139,7 +142,7 @@ riverctl map -layout 0 normal Super M  exit
 riverctl map -layout 0 normal Super W spawn "pgrep -x wofi && pkill wofi || wofi --show drun -I"
 
 #Бинд скриншот
-riverctl map -layout 0 normal  None Print spawn 'grim -g "$(slurp)" - | tee ~/Screenshots/$(date +"%Y-%m-%d-%H%M%S").png | wl-copy && notify-send "Скриншот сохранён и в буфере"'
+riverctl map -layout 0 normal  None Print spawn 'grim -g "$(slurp)" - | tee ~/Pictures/Screenshots/$(date +"%Y-%m-%d-%H%M%S").png | wl-copy && notify-send "Скриншот сохранён и в буфере"'
 
 #Бинд colorpicker
 riverctl map normal None F12 spawn "~/Scripts/colorpicker"
@@ -154,16 +157,12 @@ riverctl map -layout 0 normal Super Q  spawn alacritty
 riverctl map -layout 0 normal Super E  spawn nemo
 
 #Спавн firefox
-riverctl map -layout 0 normal Super F  spawn firefox
+riverctl map -layout 0 normal Super B  spawn firefox
 
 #Спавн Telegram
 riverctl map -layout 0 normal Super T  spawn Telegram
 
 #----Правила Окон----
-
-#AmneziaVPN - в плавающем режеми по центру экрана
-riverctl rule-add -app-id "AmneziaVPN" -title "AmneziaVPN" float
-riverctl rule-add -app-id "AmneziaVPN" -title "AmneziaVPN" position center center
 
 #FireFox
 riverctl rule-add -title "Выгрузка файла - Mozilla Firefox" float

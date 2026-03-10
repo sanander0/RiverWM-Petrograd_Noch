@@ -35,8 +35,8 @@
       "interval": 10,
       "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
       "critical-threshold": 100,
-      "format-critical": "<span foreground='#ff5555'></span> {temperatureC}°C",
-      "format": "<span foreground='#b5bd68'></span> {temperatureC}°C"
+      "format-critical": "<span foreground='#ff5555'> </span> {temperatureC}°C",
+      "format": "<span foreground='#b5bd68'> </span> {temperatureC}°C"
     },
 
     "battery": {
@@ -65,7 +65,7 @@
     
     "clock": {
       "interval": 1,
-      "format": " {:%H:%M:%S    %a %d.%m}",
+      "format": "  {:%H:%M:%S     %a %d.%m}",
       "tooltip-format": "{calendar}",
       "calendar": {
         "weeks-pos": "right",
@@ -83,7 +83,7 @@
     "cpu": {
       "interval": 4,
       "min-length": 6,
-      "format": "<span foreground='#b5bd68'></span> {usage}%",
+      "format": "<span foreground='#b5bd68'> </span> {usage}%",
       "states": {
         "warning": 80,
         "critical": 95,
@@ -92,7 +92,7 @@
 
     "memory#ram": {
       "interval": 4,
-      "format": "<span foreground='#b5bd68'>󰍛</span> {percentage}%",
+      "format": "<span foreground='#b5bd68'>󰍛 </span> {percentage}%",
       "states": {
         "warning": 80,
         "critical": 95,
@@ -103,14 +103,14 @@
 
     "network#info": {
       "interval": 2,
-      "format": "<span foreground='#b43003'>󰌙</span> Offline",
+      "format": "<span foreground='#b43003'>󰌙 </span> Offline",
       "format-wifi": "<span foreground='#b5bd68'>{icon}</span> {bandwidthDownBits}",
-      "format-ethernet": "<span foreground='#5073bf'>󰈀</span> {bandwidthDownBits}",
+      "format-ethernet": "<span foreground='#5073bf'>󰈀 </span> {bandwidthDownBits}",
       "min-length": 11,
       "tooltip": "{}",
       "tooltip-format-wifi": "{ifname}\n{essid}\n{signalStrength}% \n{frequency} GHz\n󰇚 {bandwidthDownBits}\n󰕒 {bandwidthUpBits}",
       "tooltip-format-ethernet": "{ifname}\n󰇚 {bandwidthDownBits} \n󰕒 {bandwidthUpBits}",
-      "format-icons": ["󰤫", "󰤟", "󰤢", "󰤥", "󰤨"],
+      "format-icons": ["󰤫 ", "󰤟 ", "󰤢 ", "󰤥 ", "󰤨 "],
       "states": {
         "normal": 25,
       },
@@ -160,7 +160,7 @@
         "phone": "",
         "portable": "",
         "car": "",
-        "default": [" ", " "],
+        "default": [" ", "  "],
       },
       "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
       "on-click-right": "pwvucontrol & aplay ~/.config/sounds/interact.wav",
